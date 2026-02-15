@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotti Karotti Karten</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+
+        .card-display {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            padding: 60px 40px;
+            margin: 30px 0;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card-display.carrot {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .card-display.flipping {
+            animation: flip 0.6s ease-in-out;
+        }
+
+        @keyframes flip {
+            0% {
+                transform: rotateY(0deg) scale(1);
+            }
+            50% {
+                transform: rotateY(90deg) scale(0.95);
+            }
+            100% {
+                transform: rotateY(0deg) scale(1);
+            }
+        }
+
+        .card-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .card-text {
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 50px 50px;
+            font-size: 1.5em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            font-weight: bold;
+            margin: 10px;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        .stats {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .stats-title {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            color: #333;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .empty-message {
+            color: white;
+            font-size: 1.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .card-text {
+                font-size: 1.5em;
+            }
+
+            .button {
+                padding: 15px 30px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐰 Lotti Karotti 🥕</h1>
+        <p class="subtitle">Kartenzieh-App</p>
+
+        <div id="cardDisplay" class="card-display">
+            <div class="card-icon">❓</div>
+            <div class="card-text">Drücke "Karte ziehen"!</div>
+        </div>
+
+        <button class="button" onclick="drawCard()">🎴 Karte ziehen</button>
+
+        <div class="stats">
+            <div class="stats-title">📊 Verbleibende Karten</div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-label">1 Schritt</div>
+                    <div class="stat-value" id="count1">24</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">2 Schritte</div>
+                    <div class="stat-value" id="count2">9</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">3 Schritte</div>
+                    <div class="stat-value" id="count3">3</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">🥕 Karotte</div>
+                    <div class="stat-value" id="countCarrot">12</div>
+                </div>
+            </div>
+            <div style="margin-top: 15px; color: #666; font-weight: bold;">
+                Gesamt: <span id="totalCards">48</span> Karten
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Original Lotti Karotti Kartenverteilung
+        let deck = {
+            step1: 24,
+            step2: 9,
+            step3: 3,
+            carrot: 12
+        };
+
+        let isDrawing = false; // Verhindert mehrfaches gleichzeitiges Ziehen
+
+        function updateDisplay() {
+            document.getElementById('count1').textContent = deck.step1;
+            document.getElementById('count2').textContent = deck.step2;
+            document.getElementById('count3').textContent = deck.step3;
+            document.getElementById('countCarrot').textContent = deck.carrot;
+            
+            const total = deck.step1 + deck.step2 + deck.step3 + deck.carrot;
+            document.getElementById('totalCards').textContent = total;
+        }
+
+        function drawCard() {
+            // Wenn bereits eine Karte gezogen wird, ignoriere den Klick
+            if (isDrawing) {
+                return;
+            }
+
+            const total = deck.step1 + deck.step2 + deck.step3 + deck.carrot;
+            
+            // Wenn Deck leer ist, zurücksetzen beim nächsten Klick
+            if (total === 0) {
+                resetDeck();
+                return;
+            }
+
+            isDrawing = true; // Sperre aktivieren
+            const cardDisplay = document.getElementById('cardDisplay');
+            
+            // Animation starten
+            cardDisplay.classList.add('flipping');
+            
+            // Nach halber Animation (wenn Karte "gedreht" ist) den Inhalt ändern
+            setTimeout(() => {
+                // Zufällige Karte ziehen basierend auf verbleibenden Karten
+                const random = Math.floor(Math.random() * total);
+                let card;
+                
+                if (random < deck.step1) {
+                    card = { type: '1 Schritt', icon: '1️⃣', isCarrot: false };
+                    deck.step1--;
+                } else if (random < deck.step1 + deck.step2) {
+                    card = { type: '2 Schritte', icon: '2️⃣', isCarrot: false };
+                    deck.step2--;
+                } else if (random < deck.step1 + deck.step2 + deck.step3) {
+                    card = { type: '3 Schritte', icon: '3️⃣', isCarrot: false };
+                    deck.step3--;
+                } else {
+                    card = { type: 'Click!', icon: '🥕', isCarrot: true };
+                    deck.carrot--;
+                }
+
+                // Karte anzeigen
+                cardDisplay.className = card.isCarrot ? 'card-display carrot flipping' : 'card-display flipping';
+                cardDisplay.innerHTML = `
+                    <div class="card-icon">${card.icon}</div>
+                    <div class="card-text">${card.type}</div>
+                `;
+
+                updateDisplay();
+                
+                // Prüfen ob Deck jetzt leer ist
+                const newTotal = deck.step1 + deck.step2 + deck.step3 + deck.carrot;
+                if (newTotal === 0) {
+                    // Direkt nach der Animation die "Deck leer"-Nachricht anzeigen
+                    setTimeout(() => {
+                        cardDisplay.className = 'card-display';
+                        cardDisplay.innerHTML = '<div class="empty-message">🎮 Deck ist leer!<br><br>Drücke "Karte ziehen" um neu zu mischen und eine neue Karte zu ziehen.</div>';
+                        isDrawing = false; // Sperre aufheben für Reset
+                    }, 300); // Gleiche Zeit wie Animation-Ende
+                } else {
+                    // Sperre erst nach Animation aufheben wenn noch Karten da sind
+                    setTimeout(() => {
+                        isDrawing = false;
+                    }, 300);
+                }
+            }, 300);
+            
+            // Animation-Klasse nach Abschluss entfernen
+            setTimeout(() => {
+                cardDisplay.classList.remove('flipping');
+            }, 600);
+        }
+
+        function resetDeck() {
+            deck = {
+                step1: 24,
+                step2: 9,
+                step3: 3,
+                carrot: 12
+            };
+            
+            const cardDisplay = document.getElementById('cardDisplay');
+            cardDisplay.className = 'card-display';
+            cardDisplay.innerHTML = `
+                <div class="card-icon">❓</div>
+                <div class="card-text">Drücke "Karte ziehen"!</div>
+            `;
+            
+            updateDisplay();
+        }
+
+        // Initial display
+        updateDisplay();
+    </script>
+</body>
+</html>
