@@ -54,6 +54,10 @@ Du kannst die App auch über GitHub Pages hosten:
 - Funktioniert komplett offline
 - Responsive Design mit CSS Grid und Flexbox
 
+## 🛠️ Entwicklung
+
+Dieses Projekt wurde mit Unterstützung von Claude entwickelt.
+
 ## 📄 Lizenz
 
 Dieses Projekt ist frei verfügbar. "Lotti Karotti" ist ein Markenzeichen von Ravensburger.
