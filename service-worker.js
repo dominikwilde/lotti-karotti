@@ -1,8 +1,8 @@
 const CACHE_NAME = 'lotti-karotti-v1';
 const urlsToCache = [
-  '/',
-  '/karten-ziehen.html',
-  '/index.html'
+  './',
+  './karten-ziehen.html',
+  './index.html'
 ];
 
 // Installation - Cache alle wichtigen Dateien
