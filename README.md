@@ -64,7 +64,8 @@ Du kannst die App auch über GitHub Pages hosten:
 ## 🛠️ Technologie
 
 - Reines HTML, CSS und JavaScript
-- Keine externen Abhängigkeiten
+- Keine externen Abhängigkeiten oder Bilddateien
+- Icons als inline SVG (keine separaten Dateien nötig)
 - Funktioniert komplett offline
 - Responsive Design mit CSS Grid und Flexbox
 
