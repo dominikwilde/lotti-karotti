@@ -15,25 +15,39 @@ Diese App simuliert das Kartenziehen aus dem Original-Spiel "Lotti Karotti" mit 
 - 🎴 Authentische Kartenverteilung wie im Original
 - 🔄 Flip-Animation beim Kartenziehen
 - 📊 Übersicht über verbleibende Karten
-- 📱 Vollständig responsive - funktioniert auf allen Geräten
-- 🚀 Kein Server nötig - funktioniert komplett offline
+- 📱 Progressive Web App (PWA) - installierbar wie eine native App!
+- 🚀 Funktioniert komplett offline
+- 💯 Vollständig responsive - funktioniert auf allen Geräten
 - 🎮 Automatisches Deck-Reset nach dem letzten Zug
 
 ## 🚀 Installation & Nutzung
 
 ### Option 1: Direkt im Browser öffnen
-1. Lade die Datei `lotti-karotti.html` herunter
+1. Lade die Datei `karten-ziehen.html` herunter
 2. Öffne sie mit einem beliebigen Browser (Chrome, Firefox, Safari, etc.)
 3. Fertig! 🎉
 
-### Option 2: Auf dem Smartphone
-1. Lade die `lotti-karotti.html` auf dein Handy
-2. Öffne sie mit dem Browser
-3. **Zum Home-Bildschirm hinzufügen:**
-   - **iPhone**: Safari öffnen → Teilen-Button → "Zum Home-Bildschirm"
-   - **Android**: Chrome öffnen → Menü (⋮) → "Zum Startbildschirm hinzufügen"
+### Option 2: Als PWA installieren (empfohlen! 🌟)
+Die App kann wie eine native App auf deinem Smartphone installiert werden:
 
-### Option 3: GitHub Pages
+**iPhone/iPad:**
+1. Öffne die App in Safari
+2. Tippe auf Teilen → "Zum Home-Bildschirm"
+3. Die App erscheint mit eigenem Icon 🐰
+
+**Android:**
+1. Öffne die App in Chrome
+2. Menü (⋮) → "App installieren"
+3. Fertig!
+
+Mehr Details in der [PWA-ANLEITUNG.md](PWA-ANLEITUNG.md)
+
+### Option 3: Auf dem Smartphone
+1. Lade die `karten-ziehen.html` auf dein Handy
+2. Öffne sie mit dem Browser
+3. Optional: Lesezeichen erstellen für schnellen Zugriff
+
+### Option 4: GitHub Pages
 Du kannst die App auch über GitHub Pages hosten:
 1. Forke dieses Repository
 2. Gehe zu Settings → Pages
@@ -50,7 +64,8 @@ Du kannst die App auch über GitHub Pages hosten:
 ## 🛠️ Technologie
 
 - Reines HTML, CSS und JavaScript
-- Keine externen Abhängigkeiten
+- Keine externen Abhängigkeiten oder Bilddateien
+- Icons als inline SVG (keine separaten Dateien nötig)
 - Funktioniert komplett offline
 - Responsive Design mit CSS Grid und Flexbox
 
